@@ -22,17 +22,15 @@ jobs:
           aws-region: ap-southeast-1
 
       - name: Login to Amazon ECR
-        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker Image
-        run: |
-          docker build -t pelayanan-desa-app .
+        run: docker build -t pelayanan-desa-app .
 
       - name: Tag Docker Image
         run: |
           docker tag pelayanan-desa-app:latest 775296258596.dkr.ecr.ap-southeast-1.amazonaws.com/pelayanan-desa-app:latest
 
-      - name: Push Docker Image to ECR
+      - name: Push Docker Image
         run: |
           docker push 775296258596.dkr.ecr.ap-southeast-1.amazonaws.com/pelayanan-desa-app:latest
