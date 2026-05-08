@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplikasi Pelayanan Publik Desa</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>Aplikasi Pelayanan Publik Desa</h1>
+      <p>CRUD requests pelayanan desa + upload dokumen laporan lokal.</p>
+    </header>
+
+    <section class="panel form-panel">
+      <h2>Form Pengajuan Pelayanan</h2>
+      <form id="requestForm">
+        <input type="hidden" id="requestId" />
+
+        <label>
+          Nama Pemohon
+          <input type="text" id="name" placeholder="Nama lengkap" required />
+        </label>
+
+        <label>
+          Jenis Layanan
+          <select id="serviceType" required>
+            <option value="Surat Keterangan">Surat Keterangan</option>
+            <option value="KTP / KK">KTP / KK</option>
+            <option value="Izin Usaha">Izin Usaha</option>
+            <option value="Pengaduan">Pengaduan</option>
+          </select>
+        </label>
+
+        <label>
+          Keterangan
+          <textarea id="description" rows="4" placeholder="Deskripsi kebutuhan atau keluhan" required></textarea>
+        </label>
+
+        <label>
+          Unggah Dokumen / Foto
+          <input type="file" id="fileUpload" accept="image/*,application/pdf" />
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" id="saveBtn">Simpan</button>
+          <button type="button" id="clearBtn" class="secondary">Bersihkan</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="toolbar">
+        <div>
+          <label>Search:</label>
+          <input type="text" id="searchInput" placeholder="Cari nama, jenis layanan, status..." />
+        </div>
+        <div class="stats" id="stats"></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Nama</th>
+              <th>Layanan</th>
+              <th>Status</th>
+              <th>Dokumen</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="requestTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <p>Simulasi frontend lokal untuk tugas komputasi awan. Backend sudah siap migrasi ke AWS.</p>
+    </footer>
+  </div>
+
+  <template id="rowTemplate">
+    <tr>
+      <td class="nameCell"></td>
+      <td class="serviceCell"></td>
+      <td class="statusCell"></td>
+      <td class="fileCell"></td>
+      <td class="actionsCell"></td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
